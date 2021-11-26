@@ -1,0 +1,34 @@
+[package]
+name = "rusty-rc"
+version = "0.1.0"
+authors = ["Autumnal <friedrich122112@googlemail.com>", "wucke13 <wucke13@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+# optimize for size ('z' would optimize even more)
+#opt-level = 's'
+# link with link time optimization (lto).
+lto = true
+# debug symbols are nice, and don't cost anything in binary size
+debug = true
+
+[dependencies]
+cortex-m = "*"
+cortex-m-rt = { version = "*", features = ["device"] }
+cortex-m-rtic = "0.6.0-rc.4"
+dwt-systick-monotonic = "0.1.0-rc.2"
+embedded-hal = "*"
+nb = "1"
+num = { version = "*", default-features = false }
+panic-halt = "*"
+rtt-target = { version = "*", features = ["cortex-m"], optional = true }
+stm32f4xx-hal = { version = "*", features = ["rt", "stm32f401", "usb_fs"] }
+usb-device = "*"
+
+
+[features]
+default = [ ]
+rtt = [ "rtt-target" ]
